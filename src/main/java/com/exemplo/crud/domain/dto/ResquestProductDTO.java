@@ -1,5 +1,8 @@
 package com.exemplo.crud.domain.dto;
 
-public record ResquestProductDTO(String name, Integer price_in_cents) {
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record ResquestProductDTO(@NotBlank String name, @NotNull Integer price_in_cents) {
 
 }
