@@ -20,6 +20,7 @@ public class Product {
     private Integer price_in_cents;
 
     public Product(ResquestProductDTO resquestProductDTO){
+        this.id = resquestProductDTO.id();
         this.name = resquestProductDTO.name();
         this.price_in_cents = resquestProductDTO.price_in_cents();
     }
