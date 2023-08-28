@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 
 @RestController
@@ -26,4 +27,10 @@ public class ProductsController {
         Product newProduct = new Product(data);
         return new ResponseEntity<>(productRepository.save(newProduct), HttpStatus.OK);
     }
+    @PutMapping
+    public ResponseEntity updateProduct(@RequestBody @Valid ResquestProductDTO data){
+        Product product = new Product(data);
+        return new ResponseEntity<>(productRepository.save(product), HttpStatus.OK);
+    }
+
 }
