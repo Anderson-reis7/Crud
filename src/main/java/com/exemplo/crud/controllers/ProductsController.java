@@ -4,6 +4,7 @@ package com.exemplo.crud.controllers;
 import com.exemplo.crud.domain.product.Product;
 import com.exemplo.crud.domain.product.ProductRepository;
 import com.exemplo.crud.domain.dto.ResquestProductDTO;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class ProductsController {
             product.setActive(false);
             return ResponseEntity.noContent().build();
         }else {
-            return ResponseEntity.notFound().build();
+            throw new EntityNotFoundException();
         }
     }
 }
