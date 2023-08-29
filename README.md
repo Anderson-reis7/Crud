@@ -13,7 +13,7 @@ Bem-vindo ao meu projeto de CRUD, onde implementei as operações básicas de um
 
 - Spring Boot: Um framework que facilita o desenvolvimento de aplicativos Java com configurações mínimas.
 - Hibernate: Uma ferramenta de mapeamento objeto-relacional (ORM) para Java.
-- Banco de Dados: Usei um banco de dados relacional (por exemplo, MySQL, PostgreSQL) para armazenar os dados dos produtos.
+- Banco de Dados: Usei um banco de dados relacional (MySQL) para armazenar os dados dos produtos.
 - Validação: Utilizei validações de entrada para garantir que os dados inseridos sejam válidos.
 - RESTful API: O sistema foi desenvolvido como uma API RESTful para facilitar a comunicação entre os front-end e back-end.
 
