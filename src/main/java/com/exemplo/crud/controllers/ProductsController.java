@@ -4,6 +4,7 @@ package com.exemplo.crud.controllers;
 import com.exemplo.crud.domain.product.Product;
 import com.exemplo.crud.domain.product.ProductRepository;
 import com.exemplo.crud.domain.dto.ResquestProductDTO;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class ProductsController {
     private ProductRepository productRepository;
     @GetMapping
     public ResponseEntity getAllProducts(){
-        return ResponseEntity.ok(productRepository.findAll());
+        return ResponseEntity.ok(productRepository.findAllByActiveTrue());
     }
     @PostMapping
     public ResponseEntity createProduct(@RequestBody @Valid ResquestProductDTO data){
@@ -33,8 +34,15 @@ public class ProductsController {
         return new ResponseEntity<>(productRepository.save(product), HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
+    @Transactional
     public ResponseEntity deleteProduct(@PathVariable Integer id){
-        productRepository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isPresent()){
+            Product product = optionalProduct.get();
+            product.setActive(false);
+            return ResponseEntity.noContent().build();
+        }else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
