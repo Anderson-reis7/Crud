@@ -34,14 +34,7 @@ public class ProductsController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct(@PathVariable Integer id){
-        Optional<Product> productOptional = productRepository.findById(id);
-
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
-            productRepository.delete(product);
-            return ResponseEntity.ok("Product deleted successfully.");
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        productRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
